@@ -1,0 +1,167 @@
+/* ===== HERO ===== */
+
+.hero {
+  position: relative;
+  height: 550px;
+  overflow: hidden;
+}
+
+.hero-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.4));
+}
+
+.hero-content {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  z-index: 2;
+  width: 90%;
+}
+
+.hero-content h1 {
+  font-size: 42px;
+  font-weight: 700;
+}
+
+.hero-content p {
+  margin-top: 15px;
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+/* ===== SEARCH BOX ===== */
+
+.search-wrapper {
+  max-width: 1100px;
+  margin: -80px auto 0;   /* 👈 đè lên hero */
+  position: relative;
+  z-index: 10;
+}
+
+.search-box {
+  background: white;
+  padding: 30px;
+  border-radius: 25px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.search-box input,
+.search-box select {
+  padding: 14px 18px;
+  border-radius: 30px;
+  border: 1px solid #ddd;
+  min-width: 220px;
+  font-size: 14px;
+}
+
+.search-box button {
+  padding: 14px 30px;
+  border-radius: 30px;
+  border: none;
+  background: #6ec6c4;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.search-box button:hover {
+  background: #4db7b3;
+}
+
+/* ===== CRUISE SECTION ===== */
+
+.cruise-section {
+  padding: 120px 10% 80px;
+  background: white;
+}
+
+.cruise-section h2 {
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+.cruise-grid {
+  display: flex;
+  gap: 30px;
+}
+
+.cruise-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  width: 100%;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+  transition: 0.3s;
+}
+
+.cruise-card:hover {
+  transform: translateY(-8px);
+}
+
+.cruise-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.cruise-card h3 {
+  padding: 18px;
+  font-size: 18px;
+}
+
+.cruise-card p {
+  padding: 0 18px 20px;
+  font-weight: 600;
+  color: #0b3c49;
+}
+
+/* ===== AUTOCOMPLETE ===== */
+
+.autocomplete {
+  position: relative;
+  width: 220px;
+}
+
+.suggestions {
+  position: absolute;
+  top: 55px;
+  left: 0;
+  width: 100%;
+  background: white;
+  border-radius: 15px;
+  list-style: none;
+  padding: 0;
+  margin: 5px 0 0;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 999;
+}
+
+.suggestions li {
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.suggestions li:hover {
+  background: #f5f5f5;
+}
