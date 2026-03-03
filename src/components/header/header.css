@@ -69,3 +69,78 @@
 .contact-btn:hover {
   background: #5cc8c3;
 }
+
+
+  /* User info styles */
+  .gf-user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    display: inline-block;
+  }
+  .gf-user-dropdown {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 1000;
+  min-width: 250px;
+  font-weight: 500;
+}
+
+.gf-user-option {
+  padding: 5px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #333;
+  transition: background 0.2s;
+}
+
+.gf-user-option:hover {
+  background-color: #f0f0f0;
+}
+ 
+  .gf-user-info button {
+    padding: 10px 20px;
+    border: 1px solid #dbdfde; 
+    /* border-radius: 20px; */
+    background-color: white; 
+    color: #1b1c1b; 
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease; 
+     font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  }
+  .gf-user-info button i{
+    margin-right: 5px; 
+    size: 10px;
+  }
+  
+  .gf-user-info button:hover {
+    
+    color:  #5cc8c3; 
+  }
+  
+  
+  .gf-user-info button:active {
+    transform: scale(0.98); 
+  }
+
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;   /* tăng mạnh */
+}
+
+

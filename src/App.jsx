@@ -1,12 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import "./App.css";
 import MainLayout from "./components/main-layout/main";
 import Home from "./pages/home/home";
 import Hotel from "./pages/hotel/hotel";
-
+useEffect;
 function App() {
   const [count, setCount] = useState(0);
+  const navigate = useNavigate();
+
+  (() => {
+    const ok = handleSocialRedirect();
+    if (ok && localStorage.getItem("accessToken")) {
+      navigate("/");
+    }
+  },
+    [navigate]);
 
   return (
     <div className="app">
