@@ -1,46 +1,111 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./home.css";
+import { FaArrowRight } from "react-icons/fa";
 
 const Home = () => {
-  const cruiseList = [
+  const [search, setSearch] = useState("");
+  const [location, setLocation] = useState("");
+  const [priceRange, setPriceRange] = useState("");
+  const [hotels, setHotels] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(6);
+
+  const [suggestions, setSuggestions] = useState([]);
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const hotelNameList = [
+    "Hanoi Grand Hotel",
+    "Hanoi Boutique Hotel",
+    "Danang Ocean View Resort",
+    "Fusion Maia Danang",
+    "Saigon Luxury Hotel",
+    "The Myst Dong Khoi",
     "Ha Long Paradise Cruise",
     "Athena Cruise",
+    "Phu Quoc Sunset Resort",
+    "Vinpearl Phu Quoc Resort",
+    "Sapa Mountain View Hotel",
+    "Topas Ecolodge",
+    "Nha Trang Pearl Resort",
+    "InterContinental Nha Trang",
+    "Hue Imperial Hotel",
+    "Can Tho Riverside Hotel",
+    "Muine Sand Dunes Resort",
+    "Dalat Flower Hotel",
+    "Ana Mandara Villas Dalat",
+    "Hoi An Riverside Resort",
+    "Sunrise Hotel Nguyen",
     "Cruise Nam Dan",
-    "Luxury Cruise 5*",
-    "Royal Ha Long",
-    "Premium Sky Cruise",
-    "Paradise Elegance",
-    "Ambassador Cruise",
-    "Athena Royal Cruise",
+    "Sunrise Hotel Chien",
   ];
 
-  const [keyword, setKeyword] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
+  const fetchHotels = async () => {
+    try {
+      setLoading(true);
 
-  const handleChange = (e) => {
-    const value = e.target.value;
-    setKeyword(value);
+      const params = {
+        page: 0,
+        size: 50,
+        accommodation: ["type:cruise"],
+      };
 
-    if (value.trim() === "") {
+      if (search?.trim()) {
+        params.accommodation.push(`name~${search.trim()}`);
+      }
+
+      if (location) {
+        params.accommodation.push(`address~${location}`);
+      }
+
+      if (priceRange === "low") {
+        params.accommodation.push("basePrice<1000000");
+      }
+
+      if (priceRange === "mid") {
+        params.accommodation.push("basePrice>1000000");
+        params.accommodation.push("basePrice<3000000");
+      }
+
+      if (priceRange === "high") {
+        params.accommodation.push("basePrice>3000000");
+      }
+
+      const response = await axios.get(
+        `${import.meta.env.VITE_APP_URL_FE_PUBLIC}/accommodations`,
+        { params },
+      );
+
+      const items = response?.data?.data?.items || [];
+      setHotels(items);
+      setVisibleCount(6); // reset lại khi search
+    } catch (error) {
+      console.error("Fetch hotel error:", error);
+      setHotels([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchHotels();
+  }, []);
+
+  useEffect(() => {
+    if (!search.trim()) {
       setSuggestions([]);
       return;
     }
 
-    const filtered = cruiseList.filter((item) =>
-      item.toLowerCase().includes(value.toLowerCase()),
+    const filtered = hotelNameList.filter((name) =>
+      name.toLowerCase().includes(search.toLowerCase()),
     );
 
     setSuggestions(filtered);
-  };
-
-  const handleSelect = (value) => {
-    setKeyword(value);
-    setSuggestions([]);
-  };
+  }, [search]);
 
   return (
-    <div className="home">
-      {/* HERO SECTION */}
+    <div className="hotel-page">
       <section className="hero">
         <video autoPlay muted loop playsInline className="hero-bg">
           <source src="/img/video_cruise.mp4" type="video/mp4" />
@@ -52,22 +117,28 @@ const Home = () => {
         </div>
       </section>
 
-      {/* SEARCH BOX */}
       <div className="search-wrapper">
         <div className="search-box">
-          {/* AUTOCOMPLETE */}
-          <div className="autocomplete">
+          <div className="search-input-wrapper">
             <input
               type="text"
               placeholder="Nhập tên du thuyền"
-              value={keyword}
-              onChange={handleChange}
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              onFocus={() => setShowDropdown(true)}
+              onBlur={() => setTimeout(() => setShowDropdown(false), 200)}
             />
 
-            {suggestions.length > 0 && (
-              <ul className="suggestions">
+            {showDropdown && suggestions.length > 0 && (
+              <ul className="suggestion-dropdown">
                 {suggestions.map((item, index) => (
-                  <li key={index} onClick={() => handleSelect(item)}>
+                  <li
+                    key={index}
+                    onClick={() => {
+                      setSearch(item);
+                      setShowDropdown(false);
+                    }}
+                  >
                     {item}
                   </li>
                 ))}
@@ -75,46 +146,61 @@ const Home = () => {
             )}
           </div>
 
-          <select>
-            <option>Tất cả địa điểm</option>
-            <option>Hạ Long</option>
-            <option>Lan Hạ</option>
+          <select onChange={(e) => setLocation(e.target.value)}>
+            <option value="">Tất cả địa điểm</option>
+            <option value="Hà Nội">Hà Nội</option>
+            <option value="Đà Nẵng">Đà Nẵng</option>
+            <option value="Hạ Long">Hạ Long</option>
+            <option value="Phú Quốc">Phú Quốc</option>
+            <option value="TP.HCM">TP.HCM</option>
           </select>
 
-          <select>
-            <option>Tất cả mức giá</option>
-            <option>Dưới 2 triệu</option>
-            <option>2 - 5 triệu</option>
-            <option>Trên 5 triệu</option>
+          <select onChange={(e) => setPriceRange(e.target.value)}>
+            <option value="">Tất cả mức giá</option>
+            <option value="low">Dưới 1 triệu</option>
+            <option value="mid">1 - 3 triệu</option>
+            <option value="high">Trên 3 triệu</option>
           </select>
 
-          <button>Tìm kiếm</button>
+          <button onClick={fetchHotels}>Tìm kiếm</button>
         </div>
       </div>
 
-      {/* CRUISE SECTION */}
-      <section className="cruise-section">
-        <h2>Du thuyền mới và phổ biến nhất</h2>
+      <section className="hotel-section">
+        <h2>Khách sạn mới và phổ biến nhất</h2>
 
-        <div className="cruise-grid">
-          <div className="cruise-card">
-            <img src="/img/cruise1.jpg" alt="Cruise" />
-            <h3>Luxury Cruise 5*</h3>
-            <p>Giá từ 3.500.000đ</p>
+        {loading ? (
+          <p>Đang tải...</p>
+        ) : (
+          <div className="hotel-grid">
+            {hotels.length === 0 ? (
+              <p>Không tìm thấy kết quả</p>
+            ) : (
+              hotels.slice(0, visibleCount).map((hotel) => (
+                <div className="hotel-card" key={hotel.id}>
+                  <img
+                    src={hotel.imageUrls?.[0] || "/img/default.jpg"}
+                    alt={hotel.name}
+                  />
+                  <h3>{hotel.name}</h3>
+                  <p>{hotel.location?.city}</p>
+                  <p>⭐ {hotel.starRating} sao</p>
+                  <p>Giá từ {hotel.basePrice.toLocaleString()}đ</p>
+                </div>
+              ))
+            )}
           </div>
+        )}
 
-          <div className="cruise-card">
-            <img src="/img/cruise2.jpg" alt="Cruise" />
-            <h3>Royal Ha Long</h3>
-            <p>Giá từ 2.800.000đ</p>
+        {/* 👇 NÚT XEM THÊM */}
+        {!loading && visibleCount < hotels.length && (
+          <div style={{ textAlign: "center", marginTop: "20px" }}>
+            <button onClick={() => setVisibleCount((prev) => prev + 6)}>
+              Xem tất cả Khách sạn{" "}
+              <FaArrowRight style={{ marginLeft: "8px" }} />
+            </button>
           </div>
-
-          <div className="cruise-card">
-            <img src="/img/cruise3.jpg" alt="Cruise" />
-            <h3>Premium Sky Cruise</h3>
-            <p>Giá từ 4.200.000đ</p>
-          </div>
-        </div>
+        )}
       </section>
     </div>
   );

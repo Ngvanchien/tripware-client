@@ -46,8 +46,8 @@
 /* ===== SEARCH BOX ===== */
 
 .search-wrapper {
-  max-width: 1100px;
-  margin: -80px auto 0;   /* 👈 đè lên hero */
+  max-width: 1000px;
+  margin: -80px auto 0;   /* đè lên hero */
   position: relative;
   z-index: 10;
 }
@@ -60,6 +60,7 @@
   gap: 20px;
   justify-content: center;
   box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  flex-wrap: wrap;
 }
 
 .search-box input,
@@ -67,8 +68,14 @@
   padding: 14px 18px;
   border-radius: 30px;
   border: 1px solid #ddd;
-  min-width: 220px;
+  min-width: 190px;
   font-size: 14px;
+}
+
+.search-box input:focus,
+.search-box select:focus {
+  outline: none;
+  border-color: #6ec6c4;
 }
 
 .search-box button {
@@ -86,82 +93,140 @@
   background: #4db7b3;
 }
 
-/* ===== CRUISE SECTION ===== */
-
-.cruise-section {
-  padding: 120px 10% 80px;
-  background: white;
-}
-
-.cruise-section h2 {
-  font-size: 32px;
-  margin-bottom: 40px;
-}
-
-.cruise-grid {
-  display: flex;
-  gap: 30px;
-}
-
-.cruise-card {
-  background: white;
-  border-radius: 20px;
-  overflow: hidden;
-  width: 100%;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.05);
-  transition: 0.3s;
-}
-
-.cruise-card:hover {
-  transform: translateY(-8px);
-}
-
-.cruise-card img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-}
-
-.cruise-card h3 {
-  padding: 18px;
-  font-size: 18px;
-}
-
-.cruise-card p {
-  padding: 0 18px 20px;
-  font-weight: 600;
-  color: #0b3c49;
-}
-
 /* ===== AUTOCOMPLETE ===== */
 
 .autocomplete {
   position: relative;
-  width: 220px;
 }
 
-.suggestions {
+.suggestion-list {
   position: absolute;
   top: 55px;
   left: 0;
   width: 100%;
   background: white;
   border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
   list-style: none;
   padding: 0;
   margin: 5px 0 0;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  max-height: 200px;
+  max-height: 250px;
   overflow-y: auto;
-  z-index: 999;
+  z-index: 1000;
 }
 
-.suggestions li {
-  padding: 12px 16px;
+.suggestion-list li {
+  padding: 12px 15px;
   cursor: pointer;
   transition: 0.2s;
 }
 
-.suggestions li:hover {
+.suggestion-list li:hover {
   background: #f5f5f5;
 }
+
+/* ===== HOTEL SECTION ===== */
+
+.hotel-section {
+  width: 90%;
+  background: white;
+  /* padding: 50px 60px 100px 47px; */
+  margin-left: 120px;
+  margin-bottom: 30px;
+}
+
+.hotel-section h2 {
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+/* giống cruise-grid */
+.hotel-grid {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+/* giống cruise-card */
+.hotel-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  width: 30%;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+  transition: 0.3s;
+}
+
+.hotel-card:hover {
+  transform: translateY(-8px);
+}
+
+.hotel-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.hotel-card h3 {
+  padding: 18px;
+  font-size: 18px;
+}
+
+.hotel-card p {
+  padding: 0 18px 20px;
+  font-weight: 600;
+  color: #0b3c49;
+}
+
+.search-input-wrapper {
+  position: relative;
+  width: 30%;
+}
+
+.suggestion-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 80%;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  list-style: none;
+  padding: 0;
+  margin-top: 5px;
+  max-height: 250px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.suggestion-dropdown li {
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.suggestion-dropdown li:hover {
+  background: #f5f5f5;
+}
+
+
+
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 992px) {
+  .hotel-card {
+    width: 48%;
+  }
+}
+
+@media (max-width: 600px) {
+  .hotel-card {
+    width: 100%;
+  }
+
+  .search-box {
+    flex-direction: column;
+    align-items: center;
+  }
+} 

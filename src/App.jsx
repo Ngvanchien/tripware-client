@@ -4,6 +4,7 @@ import "./App.css";
 import MainLayout from "./components/main-layout/main";
 import Home from "./pages/home/home";
 import Hotel from "./pages/hotel/hotel";
+import TimKhachSan from "./pages/find-hotels/find-hotel";
 useEffect;
 function App() {
   const [count, setCount] = useState(0);
@@ -25,6 +26,7 @@ function App() {
           <Route path="/" element={<Hotel />} />
           <Route path="/khach-san" element={<Hotel />} />
           <Route path="/du-thuyen" element={<Home />} />
+          <Route path="/tim-khach-san" element={<TimKhachSan />} />
         </Route>
       </Routes>
     </div>
