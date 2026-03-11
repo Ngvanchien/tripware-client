@@ -4,24 +4,26 @@ import { message } from "antd";
 const baseURL = import.meta.env.VITE_APP_URL_FE;
 
 export const login = async ({ email, password }) => {
-  try {
-    if (!email?.trim() || !password?.trim()) {
-      message.warning("Vui lòng nhập đầy đủ email và mật khẩu!");
-      return null;
-    }
+  // Validate input
+  if (!email?.trim() || !password?.trim()) {
+    throw new Error("Vui lòng nhập đầy đủ email và mật khẩu!");
+  }
 
-    const { data } = await axios.post(`${baseURL}/auth/access-token`, {
-      email,
-      password,
+  try {
+    const response = await axios.post(`${baseURL}/auth/access-token`, {
+      email: email.trim(),
+      password: password.trim(),
     });
 
-    const result = data?.data;
+    const result = response.data?.data;
+
     if (!result?.accessToken) {
-      throw new Error("Phản hồi từ máy chủ không hợp lệ!");
+      throw new Error("Sai email hoặc mật khẩu!");
     }
 
     const { accessToken, refreshToken, userId, name } = result;
 
+    // Lưu storage
     localStorage.setItem("accessToken", accessToken);
     if (refreshToken) localStorage.setItem("refreshToken", refreshToken);
     if (userId) localStorage.setItem("userId", userId);
@@ -29,15 +31,29 @@ export const login = async ({ email, password }) => {
 
     return result;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      const msg = error.response?.data?.message;
-      message.error(msg);
-      throw new Error(msg);
-    } else {
-      const msg = error.message || "Đã có lỗi khi đăng nhập!";
-      message.error(msg);
-      throw new Error(msg);
+    // Nếu backend trả lỗi
+    if (error.response) {
+      const status = error.response.status;
+
+      if (status === 401) {
+        throw new Error("Sai email hoặc mật khẩu!");
+      }
+
+      if (status === 404) {
+        throw new Error("Tài khoản không tồn tại!");
+      }
+
+      if (status >= 500) {
+        throw new Error("Máy chủ đang gặp lỗi, vui lòng thử lại!");
+      }
     }
+
+    // Lỗi mạng hoặc lỗi khác
+    if (error.message === "Network Error") {
+      throw new Error("Không thể kết nối đến máy chủ!");
+    }
+
+    throw new Error("Đăng nhập thất bại, vui lòng thử lại!");
   }
 };
 

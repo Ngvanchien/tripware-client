@@ -82,7 +82,7 @@
   padding: 14px 30px;
   border-radius: 30px;
   border: none;
-  background: #6ec6c4;
+  background: #0071c2;
   color: white;
   font-weight: 600;
   cursor: pointer;
@@ -90,7 +90,7 @@
 }
 
 .search-box button:hover {
-  background: #4db7b3;
+  background: #1d1c1c;
 }
 
 /* ===== AUTOCOMPLETE ===== */
@@ -211,7 +211,121 @@
 
 
 
+.cruise-card-vertical {
+  background: #fff;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  transition: 0.3s ease;
+  border: 2px solid #f2f1f1;
+  max-width: 409px;
+}
 
+.cruise-card-vertical:hover {
+  transform: translateY(-4px);
+}
+
+.cruise-image-wrapper-horizontal {
+  position: relative;
+  width: 400px;
+  min-width: 340px;
+}
+
+.cruise-image-wrapper-horizontal img {
+  width: 95%;
+  height: 95%;
+  min-height: 253.5px;
+  object-fit: cover;
+  border-radius: 20px;
+  margin: 10px;
+}
+
+
+.rating-badge-horizontal {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: #fbd16f;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.cruise-content-vertical {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.hotel-city {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.hotel-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.hotel-room {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #6b7280;
+  
+}
+
+
+.hotel-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: #9ca3af;
+  font-size: 14px;
+  margin-right: 45px;
+}
+
+.new-price {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1c1c1c;
+   margin-right: 35px;
+}
+
+.book-btn {
+  /* background: #7dd3c7; */
+  /* border: none; */
+  padding: 10px 20px;
+  /* border-radius: 25px; */
+  font-weight: 600;
+  /* cursor: pointer; */
+  transition: 0.3s;
+  background: #0071c2;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.book-btn:hover {
+  background: #031f7d;
+  color: #ffffff;
+}
 /* ===== RESPONSIVE ===== */
 
 @media (max-width: 992px) {

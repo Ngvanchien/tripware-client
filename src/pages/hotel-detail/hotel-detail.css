@@ -1,0 +1,139 @@
+.hotel-detail-page{
+max-width:1200px;
+margin:auto;
+}
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: #4f4f51;
+  padding: 15px;
+  font-size: 18px;
+  margin-bottom: 20px;
+  border-top: 1px solid #e8ebeb;
+  border-bottom: 1px solid #e8ebeb;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  color: #2d2d2e;
+}
+
+.breadcrumb a:hover {
+  color: #0e5aa5;
+}
+
+.breadcrumb-separator {
+  color: #464748;
+}
+
+.hotel-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
+}
+
+.hotel-meta{
+display:flex;
+gap:20px;
+margin-top:10px;
+color:#434242;
+}
+
+.hotel-price{
+text-align:right;
+}
+
+.old-price{
+text-decoration:line-through;
+color:#999;
+}
+
+.hotel-gallery{
+margin-bottom:40px;
+}
+
+.main-img{
+width:100%;
+height:420px;
+object-fit:cover;
+border-radius:12px;
+}
+
+.hotel-main-slider img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.hotel-thumb-slider {
+  margin-top: 15px;
+}
+
+.hotel-thumb-slider img {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.hotel-thumb-slider .swiper-slide-thumb-active img {
+  border: 3px solid #00bcd4;
+}
+
+.hotel-section-amenities {
+margin-top:60px;
+}
+
+.amenities{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+margin-top:20px;
+}
+
+.room-card{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px;
+border-radius:12px;
+border:1px solid #eee;
+margin-top:20px;
+}
+
+.room-card img{
+width:120px;
+height:90px;
+object-fit:cover;
+border-radius:8px;
+}
+
+.room-info{
+flex:1;
+margin-left:20px;
+}
+
+.room-price{
+text-align:right;
+}
+
+.room-price button{
+margin-top:10px;
+padding:10px 20px;
+background:#0ea5e9;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+.review-card{
+background:#f8fafc;
+padding:20px;
+border-radius:10px;
+margin-top:15px;
+}

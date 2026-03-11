@@ -1,0 +1,323 @@
+.company-page{
+font-family: "Segoe UI", Arial, sans-serif;
+color:#333;
+line-height:1.6;
+}
+
+/* HERO */
+
+.company-hero{
+height:450px;
+background:url("https://images.unsplash.com/photo-1528127269322-539801943592") center/cover no-repeat;
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
+}
+
+.company-hero::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+right:0;
+bottom:0;
+background:linear-gradient(
+rgba(0,0,0,0.55),
+rgba(0,0,0,0.45)
+);
+}
+
+.hero-overlay{
+position:relative;
+text-align:center;
+color:white;
+max-width:800px;
+padding:20px;
+}
+
+.hero-overlay h1{
+font-size:50px;
+font-weight:700;
+margin-bottom:15px;
+letter-spacing:1px;
+}
+
+.hero-overlay p{
+font-size:18px;
+opacity:0.9;
+}
+
+/* ABOUT */
+
+.company-about{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:60px;
+padding:90px 120px;
+align-items:center;
+}
+
+.about-left h2{
+font-size:34px;
+margin-bottom:20px;
+color:#000000;
+}
+
+.about-left p{
+margin-bottom:15px;
+font-size:16px;
+color:#555;
+}
+
+.company-about img{
+width:100%;
+border-radius:12px;
+box-shadow:0 10px 30px rgba(0,0,0,0.15);
+transition:0.4s;
+}
+
+.company-about img:hover{
+transform:scale(1.03);
+}
+
+/* WHY CHOOSE US */
+
+.company-why{
+padding:90px 120px;
+background:#f7f9fc;
+text-align:center;
+}
+
+.company-why h2{
+font-size:34px;
+margin-bottom:40px;
+color:#222;
+}
+
+.why-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:30px;
+}
+
+.why-card{
+background:white;
+padding:35px 25px;
+border-radius:12px;
+box-shadow:0 8px 25px rgba(0,0,0,0.07);
+transition:all 0.3s ease;
+cursor:pointer;
+}
+
+.why-card:hover{
+transform:translateY(-8px);
+box-shadow:0 15px 35px rgba(0,0,0,0.12);
+}
+
+.why-card h3{
+margin-top:15px;
+margin-bottom:10px;
+font-size:18px;
+}
+
+.why-card p{
+font-size:14px;
+color:#666;
+}
+
+/* SERVICES */
+
+.company-services{
+padding:90px 120px;
+text-align:center;
+}
+
+.company-services h2{
+font-size:34px;
+margin-bottom:40px;
+}
+
+.services-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:35px;
+}
+
+.service-card{
+background:white;
+padding:40px 30px;
+border-radius:12px;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+transition:0.3s;
+}
+
+.service-card:hover{
+transform:translateY(-6px);
+box-shadow:0 18px 40px rgba(0,0,0,0.12);
+}
+
+.service-card h3{
+margin:15px 0;
+}
+
+/* STATS */
+
+.company-stats{
+display:flex;
+justify-content:space-around;
+padding:80px 100px;
+background:linear-gradient(135deg,#696c6d,#636566);
+color:white;
+text-align:center;
+}
+
+.stat h2{
+font-size:42px;
+font-weight:700;
+}
+
+.stat p{
+margin-top:5px;
+font-size:15px;
+opacity:0.9;
+}
+/* STATS SECTION */
+
+.company-stats{
+padding:100px 120px;
+background:#f7f9fc;
+}
+
+.stats-container{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:30px;
+}
+
+.stat-card{
+background:white;
+padding:45px 60px;
+border-radius:14px;
+text-align:center;
+box-shadow:0 8px 25px rgba(0,0,0,0.08);
+transition:all 0.3s ease;
+}
+
+.stat-card:hover{
+transform:translateY(-10px);
+box-shadow:0 20px 40px rgba(0,0,0,0.15);
+}
+
+.stat-icon{
+font-size:40px;
+color:#0071c2;
+margin-bottom:15px;
+}
+
+.stat-card h2{
+font-size:36px;
+font-weight:700;
+color:#222;
+margin-bottom:6px;
+}
+
+.stat-card p{
+font-size:15px;
+color:#777;
+}
+
+/* PARTNERS */
+
+.company-partners{
+padding:90px 120px;
+text-align:center;
+}
+
+.company-partners h2{
+font-size:34px;
+margin-bottom:40px;
+}
+
+.partners-grid{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:25px;
+}
+
+.partner{
+background:#f4f6f8;
+padding:30px;
+border-radius:10px;
+font-weight:600;
+color:#555;
+transition:0.3s;
+}
+
+.partner:hover{
+background:#0071c2;
+color:white;
+transform:translateY(-5px);
+}
+
+/* CTA */
+
+.company-cta{
+padding:90px 20px;
+text-align:center;
+background:#f7f9fc;
+}
+
+.company-cta h2{
+font-size:34px;
+margin-bottom:10px;
+}
+
+.company-cta p{
+color:#666;
+margin-bottom:25px;
+}
+
+.company-cta button{
+padding:14px 32px;
+font-size:16px;
+border:none;
+border-radius:30px;
+background:linear-gradient(135deg,#0071c2,#0099ff);
+color:white;
+cursor:pointer;
+transition:0.3s;
+}
+
+.company-cta button:hover{
+transform:translateY(-3px);
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+
+.company-about{
+grid-template-columns:1fr;
+padding:60px 40px;
+}
+
+.why-grid{
+grid-template-columns:1fr 1fr;
+}
+
+.services-grid{
+grid-template-columns:1fr 1fr;
+}
+
+.partners-grid{
+grid-template-columns:1fr 1fr 1fr;
+}
+
+.company-stats{
+flex-direction:column;
+gap:30px;
+}
+
+}

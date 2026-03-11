@@ -124,16 +124,19 @@
 }
 
 .rating-badge {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  background: #f6c05d;
-  color: #6a4001;
+   position: absolute;
+  top: 20px;
+  left: 20px;
+  background: #fbd16f;
   padding: 6px 12px;
   border-radius: 20px;
+  font-weight: 600;
   font-size: 14px;
-  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
+
 
 /* CONTENT */
 .hotel-content {
@@ -196,9 +199,9 @@
 }
 
 .new-price {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: bold;
-  color: #00796b;
+  color: #0e4842;
   margin-top: 5px;
 }
 

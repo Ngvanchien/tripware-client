@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "./find-hotel.css";
 import { FaBed, FaMapMarkerAlt, FaRegStar } from "react-icons/fa";
-import { HiOutlineOfficeBuilding } from "react-icons/hi";
+import { HiOutlineOfficeBuilding, HiStar } from "react-icons/hi";
 
 const TimKhachSan = () => {
   const [hotels, setHotels] = useState([]);
@@ -11,6 +12,8 @@ const TimKhachSan = () => {
   const [starRatings, setStarRatings] = useState([]);
   const [amenities, setAmenities] = useState([]);
   const [sort, setSort] = useState("");
+
+  const navigate = useNavigate();
 
   // ✅ Pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -36,8 +39,6 @@ const TimKhachSan = () => {
     "Dịch vụ tour",
     "Hồ bơi vô cực",
     "Hồ bơi riêng",
-    "Free Wi-Fi",
-    "Pool",
     "Nhà hàng ",
     "Ăn sáng ",
     "Tiệc tối",
@@ -198,8 +199,8 @@ const TimKhachSan = () => {
                       />
 
                       <div className="rating-badge">
-                        <FaRegStar size={18} color="#ef9b09" />{" "}
-                        {hotel.starRating} (2) đánh giá
+                        <HiStar size={18} color="#f59e0b" />
+                        {hotel.starRating}.0 (2) đánh giá
                       </div>
                     </div>
 
@@ -238,7 +239,11 @@ const TimKhachSan = () => {
                           </div>
                         </div>
 
-                        <button className="book-btn" disabled={!isAvailable}>
+                        <button
+                          className="book-btn"
+                          disabled={!isAvailable}
+                          onClick={() => navigate(`/hotel/${hotel.id}`)}
+                        >
                           {isAvailable ? "Đặt ngay" : "Hết phòng"}
                         </button>
                       </div>

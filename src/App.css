@@ -1,6 +1,9 @@
 #root {
   width: 100%;
 }
+.ant-message {
+  z-index: 9999 !important;
+}
 
 /* .logo {
   height: 6em;

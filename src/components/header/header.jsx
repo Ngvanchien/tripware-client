@@ -25,8 +25,11 @@ function Header() {
     localStorage.removeItem("accessToken");
     setIsLoggedIn(false);
     setOpen(false);
+
     message.success("Đăng xuất tài khoản thành công");
-    navigate("/", { replace: true });
+    setTimeout(() => {
+      navigate("/", { replace: true });
+    }, 800); // delay 0.8s
   };
 
   const handleLoginSuccess = () => {

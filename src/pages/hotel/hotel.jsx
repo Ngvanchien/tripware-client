@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./hotel.css";
-import { FaArrowRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { FaBed, FaMapMarkerAlt, FaRegStar, FaArrowRight } from "react-icons/fa";
 import {
   HiStar,
   HiOutlineLocationMarker,
@@ -86,7 +86,7 @@ const Hotel = () => {
 
       const items = response?.data?.data?.items || [];
       setHotels(items);
-      setVisibleCount(6); // 👈 reset lại khi search
+      setVisibleCount(6); // reset lại khi search
     } catch (error) {
       console.error("Fetch hotel error:", error);
       setHotels([]);
@@ -206,14 +206,14 @@ const Hotel = () => {
                     {/* CONTENT */}
                     <div className="hotel-content-vertical">
                       <span className="hotel-city">
-                        <HiOutlineLocationMarker size={14} />
+                        <FaMapMarkerAlt size={15} color="#954646" />{" "}
                         {hotel.location?.city}
                       </span>
 
                       <h3 className="hotel-name">{hotel.name}</h3>
 
                       <div className="hotel-room">
-                        <HiOutlineOfficeBuilding size={16} />
+                        <HiOutlineOfficeBuilding size={18} color="#4873df" />
                         <span>{hotel.description}</span>
                       </div>
 

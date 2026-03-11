@@ -14,9 +14,10 @@ const CarLogin = ({ oncancel, onLoginSuccess }) => {
 
   const onFinish = async (e) => {
     e.preventDefault();
-    const response = await login({ email, password });
 
-    if (response) {
+    try {
+      const response = await login({ email, password });
+
       message.success("Đăng nhập thành công");
 
       if (onLoginSuccess) onLoginSuccess();
@@ -24,6 +25,8 @@ const CarLogin = ({ oncancel, onLoginSuccess }) => {
       setTimeout(() => {
         navigate("/");
       }, 800);
+    } catch (error) {
+      message.error(error.message);
     }
   };
 
@@ -166,7 +169,7 @@ const CarLogin = ({ oncancel, onLoginSuccess }) => {
                   <input type="checkbox" required />
                   <p>
                     Tôi đã đọc và đồng ý với <a>Chính sách & quy định</a> và{" "}
-                    <a>Chính sách bảo vệ dữ liệu cá nhân của Green Future</a>
+                    <a>Chính sách bảo vệ dữ liệu cá nhân của TripWare</a>
                   </p>
                 </div>
               </>

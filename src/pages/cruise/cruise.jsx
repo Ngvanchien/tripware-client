@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./home.css";
-import { FaArrowRight } from "react-icons/fa";
+import "./cruise.css";
+import { useNavigate } from "react-router-dom";
+import { FaMapMarkerAlt, FaArrowRight } from "react-icons/fa";
+import { HiStar, HiOutlineOfficeBuilding } from "react-icons/hi";
 
-const Home = () => {
+const Cruise = () => {
   const [search, setSearch] = useState("");
   const [location, setLocation] = useState("");
   const [priceRange, setPriceRange] = useState("");
@@ -14,30 +16,15 @@ const Home = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
 
-  const hotelNameList = [
-    "Hanoi Grand Hotel",
-    "Hanoi Boutique Hotel",
-    "Danang Ocean View Resort",
-    "Fusion Maia Danang",
-    "Saigon Luxury Hotel",
-    "The Myst Dong Khoi",
+  const navigate = useNavigate();
+
+  const cruiseNameList = [
     "Ha Long Paradise Cruise",
     "Athena Cruise",
-    "Phu Quoc Sunset Resort",
-    "Vinpearl Phu Quoc Resort",
-    "Sapa Mountain View Hotel",
-    "Topas Ecolodge",
-    "Nha Trang Pearl Resort",
-    "InterContinental Nha Trang",
-    "Hue Imperial Hotel",
-    "Can Tho Riverside Hotel",
-    "Muine Sand Dunes Resort",
-    "Dalat Flower Hotel",
-    "Ana Mandara Villas Dalat",
-    "Hoi An Riverside Resort",
-    "Sunrise Hotel Nguyen",
-    "Cruise Nam Dan",
-    "Sunrise Hotel Chien",
+    "Scarlet Pearl Cruise",
+    "Ambassador Cruise",
+    "Orchid Cruise",
+    "Stellar of the Seas",
   ];
 
   const fetchHotels = async () => {
@@ -78,9 +65,9 @@ const Home = () => {
 
       const items = response?.data?.data?.items || [];
       setHotels(items);
-      setVisibleCount(6); // reset lại khi search
+      setVisibleCount(6);
     } catch (error) {
-      console.error("Fetch hotel error:", error);
+      console.error("Fetch cruise error:", error);
       setHotels([]);
     } finally {
       setLoading(false);
@@ -97,7 +84,7 @@ const Home = () => {
       return;
     }
 
-    const filtered = hotelNameList.filter((name) =>
+    const filtered = cruiseNameList.filter((name) =>
       name.toLowerCase().includes(search.toLowerCase()),
     );
 
@@ -148,11 +135,9 @@ const Home = () => {
 
           <select onChange={(e) => setLocation(e.target.value)}>
             <option value="">Tất cả địa điểm</option>
+            <option value="Hạ Long">Hạ Long</option>
             <option value="Hà Nội">Hà Nội</option>
             <option value="Đà Nẵng">Đà Nẵng</option>
-            <option value="Hạ Long">Hạ Long</option>
-            <option value="Phú Quốc">Phú Quốc</option>
-            <option value="TP.HCM">TP.HCM</option>
           </select>
 
           <select onChange={(e) => setPriceRange(e.target.value)}>
@@ -167,7 +152,7 @@ const Home = () => {
       </div>
 
       <section className="hotel-section">
-        <h2>Khách sạn mới và phổ biến nhất</h2>
+        <h2>Du thuyền mới và phổ biến nhất</h2>
 
         {loading ? (
           <p>Đang tải...</p>
@@ -176,27 +161,75 @@ const Home = () => {
             {hotels.length === 0 ? (
               <p>Không tìm thấy kết quả</p>
             ) : (
-              hotels.slice(0, visibleCount).map((hotel) => (
-                <div className="hotel-card" key={hotel.id}>
-                  <img
-                    src={hotel.imageUrls?.[0] || "/img/default.jpg"}
-                    alt={hotel.name}
-                  />
-                  <h3>{hotel.name}</h3>
-                  <p>{hotel.location?.city}</p>
-                  <p>⭐ {hotel.starRating} sao</p>
-                  <p>Giá từ {hotel.basePrice.toLocaleString()}đ</p>
-                </div>
-              ))
+              hotels.slice(0, visibleCount).map((hotel) => {
+                const isAvailable = hotel.status === "available";
+
+                return (
+                  <div className="cruise-card-vertical" key={hotel.id}>
+                    {/* IMAGE */}
+                    <div className="cruise-image-wrapper-horizontal">
+                      <img
+                        className="img-hotel"
+                        src={hotel.imageUrls?.[0] || "/img/default.jpg"}
+                        alt={hotel.name}
+                      />
+
+                      <div className="rating-badge-horizontal">
+                        <HiStar size={15} color="#f59e0b" />
+                        {hotel.starRating || 5}.0 (0) đánh giá
+                      </div>
+                    </div>
+
+                    {/* CONTENT */}
+                    <div className="cruise-content-vertical">
+                      <span className="hotel-city">
+                        <FaMapMarkerAlt size={15} color="#954646" />
+                        {hotel.location?.city}
+                      </span>
+
+                      <h3 className="hotel-name">{hotel.name}</h3>
+
+                      <div className="hotel-room">
+                        <HiOutlineOfficeBuilding size={18} color="#4873df" />
+                        <span>{hotel.description}</span>
+                      </div>
+
+                      <div className="hotel-bottom">
+                        <div className="price-section">
+                          <div className="old-price">
+                            {(hotel.basePrice * 1.25).toLocaleString()}đ / tour
+                          </div>
+
+                          <div className="new-price">
+                            {hotel.basePrice.toLocaleString()}đ / tour
+                          </div>
+                        </div>
+
+                        <button
+                          className="book-btn"
+                          disabled={!isAvailable}
+                          onClick={() => navigate(`/cruise/${hotel.id}`)}
+                        >
+                          {isAvailable ? "Đặt ngay" : "Hết chỗ"}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })
             )}
           </div>
         )}
 
-        {/* 👇 NÚT XEM THÊM */}
-        {!loading && visibleCount < hotels.length && (
+        {!loading && hotels.length > 6 && (
           <div style={{ textAlign: "center", marginTop: "20px" }}>
-            <button onClick={() => setVisibleCount((prev) => prev + 6)}>
-              Xem tất cả Khách sạn{" "}
+            <button
+              onClick={() => {
+                window.scrollTo(0, 0);
+                navigate("/tim-du-thuyen");
+              }}
+            >
+              Xem tất cả Du thuyền
               <FaArrowRight style={{ marginLeft: "8px" }} />
             </button>
           </div>
@@ -206,4 +239,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Cruise;

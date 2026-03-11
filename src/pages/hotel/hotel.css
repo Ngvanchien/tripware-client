@@ -233,19 +233,21 @@
 }
 
 .hotel-image-wrapper-horizontal img {
-  width: 90%;
-  height: 90%;
+  width: 95%;
+  max-width: 380px;
+  height: 95%;
+  max-height: 253.5px;
   object-fit: cover;
   border-radius: 20px;
-  margin: 20px;
+  margin: 10px;
 }
 
 
 .rating-badge-horizontal {
   position: absolute;
-  top: 25px;
-  left: 25px;
-  background: #ffd166;
+  top: 20px;
+  left: 20px;
+  background: #fbd16f;
   padding: 6px 12px;
   border-radius: 20px;
   font-weight: 600;
@@ -259,7 +261,6 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
 }
 
 .hotel-city {
@@ -297,13 +298,14 @@
   text-decoration: line-through;
   color: #9ca3af;
   font-size: 14px;
-  margin-right: 80px;
+  margin-right: 45px;
 }
 
 .new-price {
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 700;
-  color: #065f46;
+  color: #1c1c1c;
+   margin-right: 35px;
 }
 
 .book-btn {
