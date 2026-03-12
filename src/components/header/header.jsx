@@ -93,7 +93,7 @@ function Header() {
                   className="gf-user-option"
                   onClick={() => navigate("/account/my-oder")}
                 >
-                  <i className="fa fa-clipboard"></i> Đơn thuê của tôi
+                  <i className="fa fa-clipboard"></i> Đặt phòng của tôi
                 </div>
                 <div
                   className="gf-user-option"

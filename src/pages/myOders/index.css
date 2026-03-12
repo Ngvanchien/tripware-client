@@ -1,0 +1,206 @@
+.orders-container {
+  background: #ffffff;
+  border-radius: 10px;
+  margin-top: 34px ;
+  width: 800px;
+  padding: 5px 30px;
+  margin-bottom: 34px;
+  padding-bottom: 20px;
+}
+
+.orders-title {
+  font-size: 25px;
+  font-weight: 500;
+  margin-bottom: 15px;
+  color: #222;
+  text-align: left;
+}
+
+.orders-filter {
+  background: #f1f1f1;
+  padding: 18px 16px;
+  border-radius: 4px;
+  margin-bottom: 18px;
+  color: #444;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  margin-bottom: 12px;
+  gap: 8px;
+}
+
+.filter-fields {
+  display: flex;
+  gap: 16px;
+}
+
+.filter-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.filter-item select {
+  padding: 8px 30px 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #767676;
+  font-size: 15px;
+}
+
+.filter-item input{
+ padding: 8px 30px 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 150px;
+}
+.filter-item-id input{
+ padding: 8px 30px 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 100px;
+}
+.filter-item-id {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.filter-item-id .fa-search {
+   position: absolute;
+  right: 8px;
+  color: #888;
+  cursor: pointer;
+}
+
+.filter-item-date input{
+ padding: 8px 30px 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 190px;
+}
+.filter-item-date {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.filter-item-date .fa-search {
+   position: absolute;
+  right: 8px;
+  color: #888;
+  cursor: pointer;
+}
+
+.filter-item .fa-search,
+.filter-item .fa-calendar {
+  position: absolute;
+  right: 8px;
+  color: #888;
+  cursor: pointer;
+}
+
+.filter-item .fa-calendar {
+  right: 32px;
+}
+
+.orders-table {
+  margin-top: 12px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+}
+
+.orders-table-header {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  background: #6ee7ef;
+  color: #222;
+  font-weight: 600;
+  padding: 12px 0;
+  text-align: center;
+}
+
+.orders-table-empty {
+  text-align: center;
+  padding: 24px 0;
+  color: #444;
+  background: #fff;
+  grid-column: 1 / -1;
+}
+
+.orders-pagination {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.orders-pagination button {
+  background: #f0f0f0;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  color: #888;
+}
+
+.orders-pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.orders-table-empty{
+  margin-right: 500px ;
+}
+
+
+
+
+
+
+
+
+/* Bo góc, bóng đổ cho bảng */
+.orders-table .ant-table-wrapper {
+  /* box-shadow: 0 0 15px rgba(0,0,0,0.12); */
+  background: #fff;
+  overflow: hidden;
+}
+
+
+/* Header bảng */
+.orders-table .ant-table-thead > tr > th {
+  background: #bdc2c7;
+  color: #222;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+}
+
+.orders-table .ant-table-tbody > tr > td {
+  font-size: 15px;
+  text-align: center;
+  padding: 12px 8px;
+}
+
+.orders-table .ant-table-tbody > tr:hover > td {
+  background: #e6f7ff;
+}
+
+.cancel-btn {
+  background: #c31013;
+  border: none;
+  color: white;
+  padding: 3px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cancel-btn:hover {
+  background: #d9363e;
+}
+
+

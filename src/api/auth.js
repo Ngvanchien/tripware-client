@@ -36,7 +36,7 @@ export const login = async ({ email, password }) => {
       const status = error.response.status;
 
       if (status === 401) {
-        throw new Error("Sai email hoặc mật khẩu!");
+        throw new Error("Mật khẩu bạn vừa nhập không đúng!");
       }
 
       if (status === 404) {

@@ -1,0 +1,188 @@
+.account-info-container {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 800px;
+  padding: 5px 30px;
+  margin: 34px 0;
+}
+
+.account-info-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 32px;
+  color: rgb(0, 0, 0);
+  text-align: left;
+}
+.account-info-form{
+    color: #000;
+    text-align: left;
+    font-weight: 400;
+
+}
+
+.account-info-header {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+.account-info-avatar {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.account-info-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 4px solid #eaeaea;
+  object-fit: cover;
+}
+
+.avatar-upload-btn {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.account-info-user {
+  flex: 1;
+  color: #000000;
+  text-align: left;
+}
+
+.account-info-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.account-info-join {
+  color: #666;
+  font-style: italic;
+  margin-top: 4px;
+}
+
+.account-info-actions {
+  display: flex;
+  gap: 16px;
+}
+
+.edit-btn, .delete-btn {
+  padding: 8px 24px;
+  border: 1.5px solid #268cec;
+  background: #fff;
+  color: #093d66;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.delete-btn {
+  border-color: #9b2425;
+  color: #c80b0f;
+}
+
+
+
+
+.account-info-form {
+  margin-top: 24px;
+}
+
+.form-row {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 24px;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.form-group input{
+    padding: 10px;
+}
+.form-group label {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.input-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon input {
+  width: 100%;
+  padding: 10px 40px 10px 12px;
+  border: 1.5px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  background: #f9f9f9;
+}
+
+.input-icon .fa {
+  position: absolute;
+  right: 12px;
+  color: #bbb;
+  font-size: 1.1rem;
+}
+
+.input-icon .fa-check-circle.success {
+  color: #0b9157;
+}
+
+.input-icon .fa-exclamation-triangle {
+  color: #ff4d4f;
+  right: 48px;
+}
+
+.verify-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  background: #364b7b;
+  color: #fff;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  padding: 0 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.verify-btn:hover {
+  background: #235892;
+}
+
+.phone-group.error input {
+  border-color: #c90e11;
+  background: #fff;
+}
+
+.error-text {
+  color: #ce0a0d;
+  font-size: 0.98rem;
+  margin-top: 4px;
+}

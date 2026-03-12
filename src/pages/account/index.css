@@ -1,0 +1,21 @@
+
+.account-content {
+  display: flex;
+  align-items: flex-start;
+  background-color: #f5f5f5;
+}
+
+.sidebar-account {
+  min-width: 260px; /* hoặc width cố định cho sidebar */
+  height: auto;
+}
+
+.account-details {
+  flex: 1;
+  background-color: #f5f5f5;
+  width: 800px;
+  padding: 0px 20px;
+
+
+
+}

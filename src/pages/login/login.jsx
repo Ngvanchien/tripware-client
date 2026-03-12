@@ -146,11 +146,11 @@ const TripLogin = ({ oncancel, onLoginSuccess }) => {
                 onClick={() => setShowPassword(!showPassword)}
                 style={{
                   position: "absolute",
-                  top: "50px",
-                  right: "20px",
+                  top: "65px",
+                  right: "30px",
                   cursor: "pointer",
                   color: "#666",
-                  fontSize: "15px",
+                  fontSize: "12px",
                 }}
               ></i>
             </div>

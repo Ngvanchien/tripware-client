@@ -1,0 +1,78 @@
+.change-password-container {
+  background: white;
+  padding: 10px 30px 30px 30px;
+  max-width: 800px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #000000;
+  text-align: left;
+   margin-top: 34px ;
+   margin-bottom: 34px;
+}
+
+.change-password-title {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  /* padding: 5px 5px; */
+  background-color: #f9f9f9;
+}
+
+.input-wrapper input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 12px;
+  font-size: 14px;
+  outline: none;
+}
+
+.toggle-icon-2 {
+  cursor: pointer;
+  font-size: 18px;
+  color: #ededed;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.confirm-button {
+  background-color: #0962c9;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 15px;
+  box-shadow: 0px 4px 10px rgba(21, 46, 190, 0.3);
+  transition: background 0.3s;
+  margin-top: 10px;
+}
+
+.confirm-button:hover {
+  background-color: #0f5ea8;
+}
+.toggle-icon-22{
+    margin-right: 10px;
+    cursor: pointer;
+}

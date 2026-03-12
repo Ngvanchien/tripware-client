@@ -125,13 +125,13 @@ const TimKhachSan = () => {
     <div className="search-page">
       <div className="search-layout">
         {/* SIDEBAR */}
-        <div className="filter-sidebar">
-          <div className="filter-header">
+        <div className="filter-sidebar-section">
+          <div className="filter-header-section">
             <h4>Lọc kết quả</h4>
             <button onClick={resetFilters}>Đặt lại</button>
           </div>
 
-          <div className="filter-group">
+          <div className="filter-group-section">
             <h5>Xếp hạng sao</h5>
             {[3, 4, 5].map((star) => (
               <label key={star}>
@@ -145,7 +145,7 @@ const TimKhachSan = () => {
             ))}
           </div>
 
-          <div className="filter-group">
+          <div className="filter-group-section">
             <h5>Tiện ích</h5>
             {amenityList.map((amenity) => (
               <label key={amenity}>

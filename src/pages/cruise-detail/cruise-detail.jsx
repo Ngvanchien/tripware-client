@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
-import "./hotel-detail.css";
+// import "./hotel-detail.css";
 
 import { HiHome, HiStar, HiLocationMarker, HiUser } from "react-icons/hi";
 
@@ -28,7 +28,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 
-const HotelDetail = () => {
+const CruiseDetail = () => {
   const { id } = useParams();
 
   const [hotel, setHotel] = useState(null);
@@ -283,10 +283,10 @@ const HotelDetail = () => {
 
   const generateHotelDescription = (hotel) => {
     return `
-${hotel.name} là một khách sạn ${hotel.starRating || 5} sao tọa lạc tại ${
+${hotel.name} là một du thuyền ${hotel.starRating || 5} sao tọa lạc tại ${
       hotel.location?.address || "vị trí thuận lợi"
     }. 
-Khách sạn mang đến không gian nghỉ dưỡng sang trọng với hệ thống phòng nghỉ hiện đại, 
+Du thuyền mang đến không gian nghỉ dưỡng sang trọng với hệ thống phòng nghỉ hiện đại, 
 thiết kế tinh tế và tầm nhìn tuyệt đẹp.
 
 Với các tiện nghi cao cấp như ${
@@ -325,7 +325,7 @@ ${hotel.name} là lựa chọn lý tưởng cho kỳ nghỉ gia đình, cặp đ
 
         <span className="breadcrumb-separator">›</span>
 
-        <Link to="/tim-khach-san">Tìm khách sạn</Link>
+        <Link to="/du-thuyen">Tìm du thuyền</Link>
 
         <span className="breadcrumb-separator">›</span>
 
@@ -782,4 +782,4 @@ ${hotel.name} là lựa chọn lý tưởng cho kỳ nghỉ gia đình, cặp đ
   );
 };
 
-export default HotelDetail;
+export default CruiseDetail;

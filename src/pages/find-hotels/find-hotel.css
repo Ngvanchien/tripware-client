@@ -5,24 +5,24 @@
   margin: 10px 50px;
 }
 
-.filter-sidebar {
+.filter-sidebar-section {
   width: 260px;
   background: #f8f8f8;
   padding: 20px;
   border-radius: 12px;
 }
 
-.filter-header {
+.filter-header-section {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
 }
 
-.filter-group {
+.filter-group-section {
   margin-bottom: 25px;
 }
 
-.filter-group label {
+.filter-group-section label {
   display: block;
   margin-bottom: 8px;
 }
