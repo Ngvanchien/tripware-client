@@ -57,6 +57,40 @@ export const login = async ({ email, password }) => {
   }
 };
 
+export const register = async ({
+  name,
+  email,
+  password,
+  phone,
+  address,
+  dateOfBirth,
+}) => {
+  try {
+    const { data } = await axios.post(`${baseURL}/auth/register`, {
+      name,
+      email,
+      password,
+      phone,
+      address,
+      dateOfBirth,
+    });
+
+    return data;
+  } catch (error) {
+    if (error.response) {
+      const message = error.response.data?.message;
+
+      if (message?.toLowerCase().includes("email")) {
+        throw new Error("Email đã được đăng ký!");
+      }
+
+      throw new Error(message || "Đăng ký thất bại!");
+    }
+
+    throw new Error("Không thể kết nối tới máy chủ!");
+  }
+};
+
 export const socialLogin = async (provider) => {
   try {
     window.location.href = `${baseURL}/auth/social-login?login-type=${provider}`;

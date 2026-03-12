@@ -571,3 +571,19 @@ color:#666;
 font-weight:600;
 color:#0071c2;
 }
+
+.booking-price-summary{
+margin-top:15px;
+border-top:1px solid #eee;
+padding-top:10px;
+text-align:right;
+}
+
+.discount{
+color:#e53935;
+}
+
+.final-total{
+color:#41545f;
+font-size:20px;
+}

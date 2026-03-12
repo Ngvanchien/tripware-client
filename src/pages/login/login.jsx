@@ -3,43 +3,76 @@ import "./login.css";
 import { useNavigate } from "react-router-dom";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { message } from "antd";
-import { handleSocialRedirect, login, socialLogin } from "../../api/auth";
+import {
+  handleSocialRedirect,
+  login,
+  socialLogin,
+  register,
+} from "../../api/auth";
 
-const CarLogin = ({ oncancel, onLoginSuccess }) => {
+const TripLogin = ({ oncancel, onLoginSuccess }) => {
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
+
   const [currState, setCurrState] = useState("Đăng nhập");
+  const [showPassword, setShowPassword] = useState(false);
+
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
 
   const onFinish = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await login({ email, password });
+      if (currState === "Đăng nhập") {
+        await login({ email, password });
 
-      message.success("Đăng nhập thành công");
+        message.success("Đăng nhập thành công");
 
-      if (onLoginSuccess) onLoginSuccess();
+        if (onLoginSuccess) onLoginSuccess();
 
-      setTimeout(() => {
-        navigate("/");
-      }, 800);
+        setTimeout(() => {
+          navigate("/");
+        }, 500);
+      } else {
+        if (!name || !email || !password) {
+          message.error("Vui lòng nhập đầy đủ thông tin!");
+          return;
+        }
+
+        await register({
+          name,
+          email,
+          password,
+          phone,
+        });
+
+        message.success("Đăng ký thành công");
+
+        setCurrState("Đăng nhập");
+        setName("");
+        setPhone("");
+        setPassword("");
+      }
     } catch (error) {
-      message.error(error.message);
+      message.error(error.message || "Có lỗi xảy ra!");
     }
   };
 
   useEffect(() => {
     const doRedirect = () => {
       const hasToken = handleSocialRedirect();
+
       if (hasToken && localStorage.getItem("accessToken")) {
         if (onLoginSuccess) onLoginSuccess();
+
+        message.success("Đăng nhập bằng Google thành công");
+
         navigate("/");
-        console.log("Đăng nhập bằng google thành công");
-        message.success("Đăng nhập bằng google thành công");
       }
     };
+
     doRedirect();
   }, [navigate, onLoginSuccess]);
 
@@ -50,69 +83,62 @@ const CarLogin = ({ oncancel, onLoginSuccess }) => {
           <div className="login-logo">
             <img src="/img/logo_tripware3.png" alt="TripWare Logo" />
           </div>
+
           <h2 className="form-title">{currState}</h2>
 
-          <form className="auth-form">
-            {currState === "Đăng nhập" ? (
-              <></>
-            ) : (
+          <form className="auth-form" onSubmit={onFinish}>
+            {currState === "Đăng ký" && (
               <>
                 <div className="form-group">
-                  <label htmlFor="email" className="form-label">
-                    Tên
-                  </label>
+                  <label className="form-label">Tên</label>
                   <input
                     type="text"
-                    id="name"
                     className="form-input"
                     placeholder="Nhập tên của bạn"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                   />
                 </div>
               </>
             )}
+
             <div className="form-group">
-              <label htmlFor="email" className="form-label">
-                Email
-              </label>
+              <label className="form-label">Email</label>
               <input
                 type="email"
-                id="email"
                 className="form-input"
                 placeholder="Nhập email của bạn"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            {currState === "Đăng nhập" ? (
-              <></>
-            ) : (
+
+            {currState === "Đăng ký" && (
               <>
                 <div className="form-group">
-                  <label htmlFor="email" className="form-label">
-                    Số điện thoại
-                  </label>
+                  <label className="form-label">Số điện thoại</label>
                   <input
                     type="text"
-                    id="name"
                     className="form-input"
-                    placeholder="Nhập số điện thoại của bạn"
+                    placeholder="Nhập số điện thoại"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
                   />
                 </div>
               </>
             )}
 
             <div className="form-group" style={{ position: "relative" }}>
-              <label htmlFor="password" className="form-label">
-                Mật khẩu
-              </label>
+              <label className="form-label">Mật khẩu</label>
+
               <input
                 type={showPassword ? "text" : "password"}
-                id="password"
                 className="form-input"
                 placeholder="Nhập mật khẩu"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
+
               <i
                 className={`fa-solid ${
                   showPassword ? "fa-eye-slash" : "fa-eye"
@@ -126,79 +152,42 @@ const CarLogin = ({ oncancel, onLoginSuccess }) => {
                   color: "#666",
                   fontSize: "15px",
                 }}
-                aria-label={showPassword ? "Ẩn mật khẩu" : "Hiện mật khẩu"}
               ></i>
             </div>
-            {currState === "Đăng nhập" ? (
-              <></>
-            ) : (
-              <>
-                <div className="form-group" style={{ position: "relative" }}>
-                  <label htmlFor="password" className="form-label">
-                    Nhập lại mật khẩu
-                  </label>
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    id="password"
-                    className="form-input"
-                    placeholder="Nhập mật khẩu"
-                  />
-                  <i
-                    className={`fa-solid ${
-                      showPassword ? "fa-eye-slash" : "fa-eye"
-                    }`}
-                    onClick={() => setShowPassword(!showPassword)}
-                    style={{
-                      position: "absolute",
-                      top: "50px",
-                      right: "20px",
-                      cursor: "pointer",
-                      color: "#666",
-                      fontSize: "15px",
-                    }}
-                    aria-label={showPassword ? "Ẩn mật khẩu" : "Hiện mật khẩu"}
-                  ></i>
-                </div>
-              </>
-            )}
-            {currState === "Đăng nhập" ? (
-              <></>
-            ) : (
-              <>
-                <div className="login-popup-condition">
-                  <input type="checkbox" required />
-                  <p>
-                    Tôi đã đọc và đồng ý với <a>Chính sách & quy định</a> và{" "}
-                    <a>Chính sách bảo vệ dữ liệu cá nhân của TripWare</a>
-                  </p>
-                </div>
-              </>
+
+            {currState === "Đăng ký" && (
+              <div className="login-popup-condition">
+                <input type="checkbox" required />
+                <p>
+                  Tôi đồng ý với <a>Chính sách & quy định</a> và{" "}
+                  <a>Chính sách bảo vệ dữ liệu</a>
+                </p>
+              </div>
             )}
 
-            <div>
-              <button type="submit" className="submit-btn" onClick={onFinish}>
-                {currState === "Đăng ký" ? "Đăng ký" : "Đăng nhập"}
+            <button type="submit" className="submit-btn">
+              {currState === "Đăng ký" ? "Đăng ký" : "Đăng nhập"}
+            </button>
+
+            <div className="login-options">
+              <button type="button" className="forgot-password">
+                Quên mật khẩu
               </button>
-              <div className="login-options">
-                <button type="button" className="forgot-password">
-                  Quên mật khẩu
-                </button>
-                <div className="divider">Hoặc</div>
-                <button
-                  className="google-login"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    socialLogin("google");
-                  }}
-                >
-                  <img
-                    src="/social-google-icon.svg"
-                    alt=""
-                    style={{ margin: "10px" }}
-                  />
-                  <p>Đăng nhập bằng Google</p>
-                </button>
-              </div>
+
+              <div className="divider">Hoặc</div>
+
+              <button
+                type="button"
+                className="google-login"
+                onClick={() => socialLogin("google")}
+              >
+                <img
+                  src="/social-google-icon.svg"
+                  alt=""
+                  style={{ margin: "10px" }}
+                />
+                <p>Đăng nhập bằng Google</p>
+              </button>
             </div>
           </form>
 
@@ -227,11 +216,8 @@ const CarLogin = ({ oncancel, onLoginSuccess }) => {
       </div>
 
       <div className="login-image">
-        <img
-          src="/img/hotel_banner.jpg"
-          alt="Thuê xe dễ dàng"
-          className="car-image"
-        />
+        <img src="/img/hotel_banner.jpg" alt="TripWare" className="car-image" />
+
         <button className="close-btn" onClick={oncancel}>
           <i className="fa-solid fa-xmark"></i>
         </button>
@@ -240,4 +226,4 @@ const CarLogin = ({ oncancel, onLoginSuccess }) => {
   );
 };
 
-export default CarLogin;
+export default TripLogin;

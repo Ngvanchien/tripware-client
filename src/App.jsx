@@ -8,6 +8,7 @@ import Cruise from "./pages/cruise/cruise";
 import Blog from "./pages/blog/blog";
 import Company from "./pages/company/company";
 import HotelDetail from "./pages/hotel-detail/hotel-detail";
+import TripLogin from "./pages/login/login";
 useEffect;
 function App() {
   const [count, setCount] = useState(0);
@@ -24,7 +25,7 @@ function App() {
   return (
     <div className="app">
       <Routes>
-        {/* <Route path="/login" element={<Login />} /> */}
+        <Route path="/login" element={<TripLogin />} />
         <Route element={<MainLayout />}>
           <Route path="/" element={<Hotel />} />
           <Route path="/khach-san" element={<Hotel />} />

@@ -175,6 +175,22 @@ const HotelDetail = () => {
     return total + quantity * (room.pricePerNight || 0);
   }, 0);
 
+  const checkInDate = new Date(bookingData.checkIn);
+  const checkOutDate = new Date(bookingData.checkOut);
+
+  const nights = Math.ceil(
+    (checkOutDate - checkInDate) / (1000 * 60 * 60 * 24),
+  );
+  const roomTotal = selectedRooms.reduce((total, room) => {
+    return total + room.quantity * room.pricePerNight * nights;
+  }, 0);
+  let discount = 0;
+
+  if (bookingData.promotionCode === "NEWCUSTOMER2026") {
+    discount = roomTotal * 0.1;
+  }
+  const finalTotal = roomTotal - discount;
+
   /* ================= MODAL ================= */
 
   const openRoomModal = (room) => {
@@ -613,6 +629,20 @@ const HotelDetail = () => {
                   })
                 }
               />
+
+              <div className="booking-price-summary">
+                <p>Tiền phòng: {roomTotal.toLocaleString()} đ</p>
+
+                {discount > 0 && (
+                  <p className="discount">
+                    Giảm giá: -{discount.toLocaleString()} đ
+                  </p>
+                )}
+
+                <h3 className="final-total">
+                  Thành tiền: {finalTotal.toLocaleString()} đ
+                </h3>
+              </div>
 
               <button
                 className="confirm-booking-btn"
