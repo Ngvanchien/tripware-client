@@ -15,6 +15,7 @@ import MyOders from "./pages/myOders";
 import AccountInfo from "./pages/account-info";
 import PrivaciesPolicy from "./pages/privacies-policy";
 import ChangePassword from "./pages/change-password";
+import TimDuThuyen from "./pages/find-cruise/find-cruise";
 useEffect;
 function App() {
   const [count, setCount] = useState(0);
@@ -44,6 +45,7 @@ function App() {
           <Route path="/khach-san" element={<Hotel />} />
           <Route path="/du-thuyen" element={<Cruise />} />
           <Route path="/tim-khach-san" element={<TimKhachSan />} />
+          <Route path="/tim-du-thuyen" element={<TimDuThuyen />} />
           <Route path="/hotel/:id" element={<HotelDetail />} />
           <Route path="/cruise/:id" element={<CruiseDetail />} />
           <Route path="/blog" element={<Blog />} />

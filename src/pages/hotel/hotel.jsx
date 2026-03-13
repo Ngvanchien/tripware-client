@@ -119,7 +119,7 @@ const Hotel = () => {
           <source src="/img/video_hotel.mp4" type="video/mp4" />
         </video>
 
-        <div className="hero-content">
+        <div className="hero-content-wrapper">
           <h1>Bạn lựa chọn khách sạn nào?</h1>
           <p>Hàng nghìn khách sạn với mức giá tốt đang chờ đón bạn</p>
         </div>

@@ -15,21 +15,21 @@ const posts = [
   },
   {
     id: 2,
-    title: "Những Khách Sạn Tốt Nhất Ở Hà Nội Cho Người Lần Đầu Du Lịch",
+    title: "Những Khách Sạn Tốt Nhất Ở Hà Nội",
     category: "Khách sạn",
     image: "https://images.unsplash.com/photo-1566073771259-6a8506099945",
     description:
-      "Khám phá những khách sạn tốt nhất tại Hà Nội với dịch vụ chất lượng và vị trí thuận tiện.",
+      "Danh sách khách sạn tốt nhất tại Hà Nội với dịch vụ chất lượng.",
     author: "Admin",
     date: "8 Tháng 3, 2026",
   },
   {
     id: 3,
-    title: "Cách Chọn Cabin Du Thuyền Phù Hợp Nhất",
+    title: "Cách Chọn Cabin Du Thuyền Phù Hợp",
     category: "Du thuyền",
     image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb",
     description:
-      "Lựa chọn cabin phù hợp sẽ giúp chuyến du thuyền của bạn trở nên thoải mái và tuyệt vời hơn.",
+      "Lựa chọn cabin phù hợp sẽ giúp chuyến du thuyền của bạn thoải mái hơn.",
     author: "Admin",
     date: "5 Tháng 3, 2026",
   },
@@ -39,29 +39,9 @@ const posts = [
     category: "Kinh nghiệm du lịch",
     image: "https://images.unsplash.com/photo-1528127269322-539801943592",
     description:
-      "Tìm hiểu thời điểm lý tưởng nhất để tham quan Vịnh Hạ Long và tận hưởng phong cảnh tuyệt đẹp.",
+      "Thời điểm lý tưởng để tham quan Vịnh Hạ Long và tận hưởng phong cảnh.",
     author: "Admin",
     date: "2 Tháng 3, 2026",
-  },
-  {
-    id: 5,
-    title: "7 Kinh Nghiệm Khi Đặt Khách Sạn Online",
-    category: "Kinh nghiệm du lịch",
-    image: "https://images.unsplash.com/photo-1496417263034-38ec4f0b665a",
-    description:
-      "Tránh những sai lầm phổ biến và học cách đặt khách sạn với giá tốt nhất.",
-    author: "Admin",
-    date: "28 Tháng 2, 2026",
-  },
-  {
-    id: 6,
-    title: "Trải Nghiệm Du Thuyền Sang Trọng Tại Việt Nam",
-    category: "Du thuyền",
-    image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
-    description:
-      "Trải nghiệm dịch vụ du thuyền cao cấp cùng khung cảnh biển tuyệt đẹp tại Việt Nam.",
-    author: "Admin",
-    date: "25 Tháng 2, 2026",
   },
 ];
 
@@ -82,24 +62,25 @@ const Blog = () => {
     <div className="blog-page">
       {/* Banner */}
       <div className="blog-banner">
-        <h1>Blog Du Lịch</h1>
-        <p>Kinh nghiệm du lịch, review du thuyền và khách sạn</p>
+        <div className="blog-banner-content">
+          <h1>Blog Du Lịch</h1>
+          <p>Kinh nghiệm du lịch, review khách sạn và du thuyền</p>
 
-        <div className="blog-search">
-          <FaSearch />
-          <input
-            type="text"
-            placeholder="Tìm kiếm bài viết..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
+          <div className="blog-search">
+            <FaSearch />
+            <input
+              type="text"
+              placeholder="Tìm kiếm bài viết..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </div>
         </div>
       </div>
 
       <div className="blog-container">
-        {/* Main */}
+        {/* MAIN */}
         <div className="blog-main">
-          {/* Categories */}
           <div className="blog-categories">
             {categories.map((cat) => (
               <button
@@ -112,7 +93,6 @@ const Blog = () => {
             ))}
           </div>
 
-          {/* Blog Grid */}
           <div className="blog-grid">
             {filteredPosts.map((post) => (
               <div className="blog-card" key={post.id}>
@@ -142,30 +122,23 @@ const Blog = () => {
           </div>
         </div>
 
-        {/* Sidebar */}
+        {/* SIDEBAR */}
         <div className="blog-sidebar">
-          <h3>Bài viết nổi bật</h3>
-
-          <ul>
-            <li>Top 10 Du Thuyền Sang Trọng Nhất Vịnh Hạ Long</li>
-            <li>Những Khách Sạn Tốt Nhất Ở Hà Nội</li>
-            <li>Kinh Nghiệm Du Lịch Việt Nam</li>
-            <li>Cách Đặt Khách Sạn Giá Rẻ</li>
-          </ul>
-
-          <h3>Danh mục</h3>
-
-          <ul>
-            <li>Du thuyền</li>
-            <li>Khách sạn</li>
-            <li>Kinh nghiệm du lịch</li>
-          </ul>
+          <div className="sidebar-box">
+            <h3>Bài viết nổi bật</h3>
+            <ul>
+              <li>Top 10 Du Thuyền Sang Trọng Nhất</li>
+              <li>Khách Sạn Tốt Nhất Ở Hà Nội</li>
+              <li>Kinh Nghiệm Du Lịch Việt Nam</li>
+              <li>Cách Đặt Khách Sạn Giá Rẻ</li>
+            </ul>
+          </div>
 
           <div className="newsletter">
-            <h3>Đăng ký nhận tin</h3>
-            <p>Nhận kinh nghiệm du lịch và ưu đãi mới nhất</p>
+            <h3>Nhận tin du lịch</h3>
+            <p>Cập nhật ưu đãi và kinh nghiệm mới</p>
 
-            <input placeholder="Nhập email của bạn" />
+            <input placeholder="Email của bạn" />
             <button>Đăng ký</button>
           </div>
         </div>
